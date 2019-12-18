@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Useris</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Login</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @useris.each do |useri| %>
+      <tr>
+        <td><%= useri.name %></td>
+        <td><%= useri.email %></td>
+        <td><%= useri.login %></td>
+        <td><%= link_to 'Show', useri %></td>
+        <td><%= link_to 'Edit', edit_useri_path(useri) %></td>
+        <td><%= link_to 'Destroy', useri, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Useri', new_useri_path %>
