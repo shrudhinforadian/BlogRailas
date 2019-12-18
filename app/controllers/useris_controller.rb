@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UserisController < ApplicationController
-  before_action :set_useri, only: [:show, :edit, :update, :destroy]
+  before_action :set_useri, only: %i[show edit update destroy]
 
   # GET /useris
   # GET /useris.json
@@ -9,8 +11,7 @@ class UserisController < ApplicationController
 
   # GET /useris/1
   # GET /useris/1.json
-  def show
-  end
+  def show; end
 
   # GET /useris/new
   def new
@@ -18,8 +19,7 @@ class UserisController < ApplicationController
   end
 
   # GET /useris/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /useris
   # POST /useris.json
@@ -28,7 +28,8 @@ class UserisController < ApplicationController
 
     respond_to do |format|
       if @useri.save
-        format.html { redirect_to @useri, notice: 'Useri was successfully created.' }
+        format.html { redirect_to @useri, notice: 'Useri was successfully
+          created.' }
         format.json { render :show, status: :created, location: @useri }
       else
         format.html { render :new }
@@ -56,19 +57,21 @@ class UserisController < ApplicationController
   def destroy
     @useri.destroy
     respond_to do |format|
-      format.html { redirect_to useris_url, notice: 'Useri was successfully destroyed.' }
+      format.html { redirect_to useris_url, notice: 'Useri was successfully
+        destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_useri
-      @useri = Useri.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def useri_params
-      params.require(:useri).permit(:name, :email, :login)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_useri
+    @useri = Useri.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def useri_params
+    params.require(:useri).permit(:name, :email, :login)
+  end
 end
